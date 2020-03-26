@@ -247,7 +247,7 @@ credentials = {
 
 Validation flow verifies whether all the sensor devices are configured with the required meta data and are present in TBI as well, 
 
-![validation flow](../images/validation-flow.png)
+![validation flow](./images/validation-flow.png)
 
 Once validation is successful, it automatically triggers the realtime flow and it works in the following way,
 * Validates if all the credentials are configured
@@ -278,17 +278,17 @@ for(i=0;i<sensors.length;i++){
 * If all validation is successful, triggers the realtime aggregation flow
 * Validation errors are seen in the debug window or the content window. To view the validation errors in conext window, follow the steps shown in below diagram,
 
-![Validation errors](../images/validation-errors.png)
+![Validation errors](./images/validation-errors.png)
 
 **Note:** Incase if one wants to execute realtime aggregation flow even with the validation failures, then set **stopOnValidationFailure** flag to false in **Configure TBI Credentials** node as shown below,
 
-![stop-on-failure](../images/stop-on-failure.png)
+![stop-on-failure](./images/stop-on-failure.png)
 
 #### Realtime data aggregation
 
 Realtime aggregation flow starts whenever the TBI credentials are set and there are no validation failures. It works in the following way,
 
-![realtime flow](../images/realtime-flow.PNG)
+![realtime flow](./images/realtime-flow.PNG)
 
 * Forms a PostgreSQL query to get the latest events of all the sensor devices in the last 24 hours from the raw sensor table 
 
@@ -328,7 +328,7 @@ for(i=0;i<payload.length;i++){
 
 Historical data aggregation aims to work on the historical data if any and provide the occupancy by the aggregation interval specified. The flow needs to be triggered manually and it works in the following way,
 
-![historical flow](../images/historical-flow.PNG)
+![historical flow](./images/historical-flow.PNG)
 
 * Triggers the flow if its not running already
 * Forms a PostgreSQL query to get the least time where the first entry is present,
