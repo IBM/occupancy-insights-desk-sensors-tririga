@@ -1,3 +1,4 @@
+# WORK IN PROGRESS
 # Add support for Desk Sensors to IBM Tririga Building Insights
 
 In this code pattern, we will see a methodology to add support for desk sensors to `IBM TRIRIGA® Building Insights (TBI)`. 
