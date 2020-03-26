@@ -1,14 +1,19 @@
-## Sensor Support (PoC Approach)
+# Add support for Desk Sensors to IBM Tririga Building Insights
 
-In Jan 2020 release, sensors (any type) are not supported out of the box by TBI. However following approach is provided to enable our business partners in providing sensor support, specifically desk level sensors
+In this code pattern, we will see a methodology to add support for desk sensors to `IBM TRIRIGA® Building Insights (TBI)`. 
 
-### Pre-req ###
- 
-This section assumes that user will have the following instances obtained and configured,
-- TRIRIGA
-- TRIRIGA Building Insights
+TBI relies on IoT and AI to connect and securely store data. It uses this data to learn, analyze and visualize a building’s behavior. It is a cloud-based offering that connects building systems, sensors and external products through a responsive web application. With a single click, you can get AI-based insights, such as future occupancy predictions, across your entire enterprise.
 
-***
+Currently, sensors of any type are not supported out of the box by `TBI`. We will demonstrate a methodology to specifically add desk sensor support to `TBI`. This methodology can be extended to support other types of sensors that are currently not supported out-of-the-box in `TBI`.
+
+When the reader has completed this Code Pattern, they will understand how to:
+- Add support for a sensor type to `TBI`
+- Visualize occupancy insights on `TBI` based on the data from the sensor
+    
+
+
+
+## Flow
 
 ### Functional Components required for Sensor Support ###
 
@@ -18,6 +23,17 @@ This section assumes that user will have the following instances obtained and co
 
 ![Sensor Support steps ](./images/sensorSupportSteps.png)
 
+## Pre-requisites ##
+
+* [**TRIRIGA**](https://www.ibm.com/us-en/marketplace/ibm-tririga)
+* [**TRIRIGA Building Insights**](https://www.ibm.com/us-en/marketplace/iot-building-insights)
+> Note: TRIRIGA and Building Insights will need to be obtained via the IBM Marketplace, not the IBM Cloud Platform. The link to each service on IBM Marketplace can be found below
+
+## Steps ##
+
+Create the following services:
+* [**TRIRIGA**](https://www.ibm.com/us-en/marketplace/ibm-tririga)
+* [**TRIRIGA Building Insights**](https://www.ibm.com/us-en/marketplace/iot-building-insights)
 
 ### Steps for TRIRIGA System Administrator
 #### 3. IOT Platform
