@@ -12,26 +12,27 @@ This section assumes that user will have the following instances obtained and co
 
 ### Functional Components required for Sensor Support ###
 
-![Sensor Support](./images/SensorSupport.png)
+![Sensor Support](/2H_2019_Release/Hill1/images/SensorSupport.png)
 
 ### steps for supporting sensors ###
 
-![Sensor Support steps ](./images/sensorSupportSteps.png)
+![Sensor Support steps ](/2H_2019_Release/Hill1/images/sensorSupportSteps.png)
 
 
 ### Steps for TRIRIGA System Administrator
 #### 3. IOT Platform
-- 3.1 [Create device type](#31--32-define-sensor-devices-in-wiotp)
-- 3.2 [Create devices, add metadata, connect devices](#31--32-define-sensor-devices-in-wiotp)
-- 3.3 [Create physical and logical interface for the device typeW](#33-create-physical--logical-interfaces-for-sensor-devices-in-wiotp)
-- 3.4 [Verify raw sensor data in PostgreSQL](#34-verify-raw-sensor-data-in-postgresql)
+- 3.1 Create device type
+- 3.2 [Create devices, add metadata, connect devices](#define-sensor-devices-in-wiotp)
+- 3.3 [Create physical and logical interface for the device typeW](#create-physical--logical-interfaces-for-sensor-devices-in-wiotp)
+- 3.4 [Verify raw sensor data in PostgreSQL](#verify-raw-sensor-data-in-postgresql)
 #### 4. IoT Sensor support component
 - 4.1 [Deploy sensor support component(Node-RED) in Cloud](https://github.ibm.com/IoT4Buildings/Desk-Sensor-Support/blob/master/docs/Install_Nodes.md)
 - 4.2 [Download and import flow from git](https://github.ibm.com/IoT4Buildings/Desk-Sensor-Support/blob/master/docs/Install_Nodes.md#import-flows)
-- 4.3 [Configure flows with required credentials](https://github.ibm.com/IoT4Buildings/Desk-Sensor-Support/blob/master/docs/configure_nodes.md)
+- 4.3 [Modify the flow to support the required sensors](https://github.ibm.com/IoT4Buildings/Desk-Sensor-Support/blob/master/docs/configure_nodes.md)
 - 4.4 [Validate the metadata](https://github.ibm.com/IoT4Buildings/Desk-Sensor-Support/blob/master/docs/validation-flow.md)
 - 4.5 [Trigger realtime data aggreation flow](https://github.ibm.com/IoT4Buildings/Desk-Sensor-Support/blob/master/docs/realtime-aggregation-flow.md)
 - 4.6 [Trigger historical data aggregation flow](https://github.ibm.com/IoT4Buildings/Desk-Sensor-Support/blob/master/docs/historical-flow.md)
+- View results in TBI dashboard
 
 ***
 #### Sensor schema ####
@@ -81,7 +82,7 @@ where,
 ***
 
 
-### 3.1 & 3.2 Define sensor devices in WIoTP
+### Define sensor devices in WIoTP
 In order to connect sensor devices to Watson IoT Platform(WIoTP), first it needs to be registered in WIoTP. [This tutorial](https://cloud.ibm.com/docs/services/IoT?topic=iot-platform-getting-started#step1) provides details about how one can register the device type and devices in WIoTP.
 While registering each of the desk level sensor to Watson IoT Platform, the following information needs to be provided as metadata for each of the sensors
 
@@ -90,13 +91,13 @@ While registering each of the desk level sensor to Watson IoT Platform, the foll
 
 Following are the steps to add the same in metadata of the devices,
 * Click **Edit Metadata** button while registering the deive
-![edit-metadata](./images/edit-metadata.png)
+![edit-metadata](/2H_2019_Release/Hill1/images/edit-metadata.png)
 * Add **tririgaFloorId** and **tririgaOrgId** obtained from TRIRIGA as shown below
-![add-metadata](./images/add-metadata.png)
+![add-metadata](/2H_2019_Release/Hill1/images/add-metadata.png)
 
 ***
 
-### 3.3 Create physical & logical interfaces for sensor devices in WIoTP
+### Create physical & logical interfaces for sensor devices in WIoTP
 The reference implementation of sensor support component expects the sensor data in PostgreSQL and in the following format. 
 ```
 event - Number 
@@ -116,15 +117,15 @@ to persist the sensor data in PostgreSQL, physical & logical interface needs to 
 
 * Make sure that the sensor devices are sending the data so that the creation of interfaces are easy
 * Click **Create Physical Interface** from device type page,
-![physical-interface](./images/physical-interface.png)
+![physical-interface](/2H_2019_Release/Hill1/images/physical-interface.png)
 * Derive properties from running devices as shown below, (**Note** that the schema may be different based on the sensor)
-![pysical-derive-properties](./images/pysical-derive-properties.png)
+![pysical-derive-properties](/2H_2019_Release/Hill1/images/pysical-derive-properties.png)
 * Click **Create Logical Interface** as shown below,
-![logical-interface](./images/logical-interface.png)
+![logical-interface](/2H_2019_Release/Hill1/images/logical-interface.png)
 * Map the sensor data properties as shown below,
-![map-properties-logical](./images/map-properties-logical.png)
+![map-properties-logical](/2H_2019_Release/Hill1/images/map-properties-logical.png)
 * Add the metadata properties as shown below,
-![tririga-properties-logical](./images/tririga-properties-logical.png)
+![tririga-properties-logical](/2H_2019_Release/Hill1/images/tririga-properties-logical.png)
 * Also, if required transform the timestamp to ISO-8601 format if the original timestamp is not in ISO-8601 format, For example, use the following transformation logic,
 ```
 $join([ $substring($event.timestamp, 6, 4), '-', $substring($event.timestamp, 3, 2), '-', $substring($event.timestamp, 0, 2), 'T', $substring($event.timestamp, 11, 2), ":", $substring($event.timestamp, 14, 2), ":", $substring($event.timestamp, 17, 2), "+03:00"])
@@ -133,9 +134,9 @@ $join([ $substring($event.timestamp, 6, 4), '-', $substring($event.timestamp, 3,
 
 ***
 
-### 3.4 Verify raw sensor data in PostgreSQL
+### Verify raw sensor data in PostgreSQL
 * Connect to PostgreSQL and verify that table with name "iot_deviceType" exists
 * Verify that it receives the latest data in the schema set by logical interface. For example,
-![verify-raw-data](./images/verify-raw-data.PNG)
+![verify-raw-data](/2H_2019_Release/Hill1/images/verify-raw-data.PNG)
 
 ***
