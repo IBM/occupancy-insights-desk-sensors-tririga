@@ -15,11 +15,17 @@ When the reader has completed this Code Pattern, they will understand how to:
 
 ## Flow
 
+![Sensor Support](./images/architecture.png)
+
+1. Desk sensors send data to Watson IoT Platform
+2. The data is transformed and aggregated before being sent to TBI
+3. TBI generates occupancy insights
+
 ### Functional Components required for Sensor Support ###
 
 ![Sensor Support](./images/SensorSupport.png)
 
-### steps for supporting sensors ###
+### Steps for supporting sensors ###
 
 ![Sensor Support steps ](./images/sensorSupportSteps.png)
 
