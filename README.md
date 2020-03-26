@@ -36,6 +36,12 @@ When the reader has completed this Code Pattern, they will understand how to:
 > Note: TRIRIGA and Building Insights will need to be obtained via the IBM Marketplace, not the IBM Cloud Platform. The link to each service on IBM Marketplace can be found below
 
 ## Steps ##
+1. [Create and configure TBI](#1-create-and-configure-TBI)
+2. [Set up and configure sensor on IoT Platform](#2-set-up-and-configure-sensor-on-iot-platform)
+3. [Set up and configure IoT sensor support component](#3-set-up-and-configure-iot-sensor-support-component)
+4. [Analyze results](#4-analyze-results)
+
+### 1. Create and configure TBI
 
 Create the following services:
 * [**TRIRIGA**](https://www.ibm.com/us-en/marketplace/ibm-tririga)
