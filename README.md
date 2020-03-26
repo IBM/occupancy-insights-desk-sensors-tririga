@@ -62,13 +62,13 @@ where,
 
 ![Sensor Support steps ](./images/sensorSupportSteps.png)
 
-## Pre-requisites ##
+## Pre-requisites 
 
 * [**TRIRIGA**](https://www.ibm.com/us-en/marketplace/ibm-tririga)
 * [**TRIRIGA Building Insights**](https://www.ibm.com/us-en/marketplace/iot-building-insights)
 > Note: TRIRIGA and Building Insights will need to be obtained via the IBM Marketplace, not the IBM Cloud Platform. The link to each service on IBM Marketplace can be found below
 
-## Steps ##
+## Steps 
 1. [Create and configure TBI](#1-create-and-configure-TBI)
 2. [Set up and configure sensor on IoT Platform](#2-set-up-and-configure-sensor-on-iot-platform)
 3. [Set up and configure IoT sensor support component](#3-set-up-and-configure-iot-sensor-support-component)
@@ -81,6 +81,7 @@ Create the following services:
 * [**TRIRIGA Building Insights**](https://www.ibm.com/us-en/marketplace/iot-building-insights)
 
 ### 2. Set up and configure sensor on IoT Platform
+
 #### Define sensor devices in WIoTP
 In order to connect sensor devices to Watson IoT Platform(WIoTP), first it needs to be registered in WIoTP. [This tutorial](https://cloud.ibm.com/docs/services/IoT?topic=iot-platform-getting-started#step1) provides details about how one can register the device type and devices in WIoTP.
 While registering each of the desk level sensor to Watson IoT Platform, the following information needs to be provided as metadata for each of the sensors
@@ -144,11 +145,11 @@ Refer to [IBM Developer tutorial](https://developer.ibm.com/tutorials/how-to-cre
 #### Add extra nodes to your Node-RED palette
 - On your application’s details page, click **View toolchain**.
 - In the Continuous Delivery box, click **git**. This step takes you to a git repository where you can edit the application source code from your browser.
-![Git](/images/toolchain-git.PNG)
+![Git](./images/toolchain-git.PNG)
 - Scroll down the list of files and click on **package.json**. This file lists the module dependencies of your application.
-![Package.json](/images/package.json)
+![Package.json](./images/package.json)
 - Click the **Edit** button.
-![Edit package](/images/edit-package.PNG)
+![Edit package](./images/edit-package.PNG)
 - Add the following entries to the top of the dependencies section (1):
 ```
 "node-red-dashboard": "2.19.4",
@@ -160,21 +161,21 @@ Refer to [IBM Developer tutorial](https://developer.ibm.com/tutorials/how-to-cre
 
 > Note: Do not forget the comma (,) at the end of the line to separate it from the next entry.
 - Add a Commit message (2) and click Commit changes (3)
-![Add dependencies](/images/add-npm-packages.PNG)
+![Add dependencies](./images/add-npm-packages.PNG)
 - At this point, the Continuous Delivery pipeline will automatically run to build and deploy that change into your application. If you view the Delivery Pipeline you can watch its progress. The Build section shows you the last commit made (1) and the Deploy section shows the progress of redeploying the application (2).
-![Build and Deploy](/images/buid-and-deploy.PNG)
+![Build and Deploy](./images/buid-and-deploy.PNG)
 - After the Deploy stage completes, your application will have restarted and now have the node-red-dashboard nodes preinstalled.
 
 #### Import Flows
 
 After the Node-RED is installed, import the Desk level sensor support flows. Complete the following steps. 
 1. Go to he Node-RED user-interface,  in the top right corner click on 3 horizontal dashes. A drop-down menu displays.
- ![Git](/images/import.png)
+ ![Git](./images/import.png)
 
 2. Click on **Import** and then **clipboard**. A pop up window displays.
 
- ![Git](/images/import_Flow.png)
-3. Copy the [desk_sensor_support_flow.json](../desk_sensor_support_flow.json) to this window  and click on **import**.
+ ![Git](./images/import_Flow.png)
+3. Copy the [desk_sensor_support_flow.json](./desk_sensor_support_flow.json) to this window  and click on **import**.
 
 #### Configure Nodes 
 You need to configure the following nodes in the Flows
@@ -182,7 +183,7 @@ You need to configure the following nodes in the Flows
 ##### Configuration & validation Flow 
 1. In Configure TBI credentials function node
 
-  ![Git](/images/configure_tbi_credentials.png)
+  ![Git](./images/configure_tbi_credentials.png)
 
  you need to change the following credentials  
 ```
@@ -198,37 +199,37 @@ credentials = {
 ```
 2. In Get devices from WIoTP Node you need to add your WIoTP credentials,
 
- ![Git](/images/configure_device_manager.png)
+ ![Git](./images/configure_device_manager.png)
 
 3. In that node you will find API key click on the small pen button to add your credentials
 
- ![Git](/images/edit_cred_button.png)
+ ![Git](./images/edit_cred_button.png)
 
 4. Now add your API Key and API token in the given Fields
- ![Git](/images/add_cred.png)
+ ![Git](./images/add_cred.png)
 
 5. Then click on update or add and then done.
 
 #### Realtime aggregation FLow ####
 
 1. In Publish to WIoTP node you need to add your WIoTP credentials
-![Git](/images/configure_wiotp_node.png)
+![Git](./images/configure_wiotp_node.png)
 
 2. In that node you will find API key click on the small pen button to add your credentials
-![Git](/images/wiotp_edit_button.png)
+![Git](./images/wiotp_edit_button.png)
 
 3. Then you need to add your WIoTP credentials in the given **API key** and **API Token** Fields and add **Application ID** as any name
-![Git](/images/wiotp_new_cred.png)
+![Git](./images/wiotp_new_cred.png)
 
 4. Then click on update or add and then click on done to add your WIoTP credentials to sensor_support.
 
 #### Historical data aggregation ####
 
 1. In the Read dataa node you need to configure with PostgreSQL credentials
-![Git](/images/postgres_cred.png)
+![Git](./images/postgres_cred.png)
 
 2. In this node click on the edit button to add your postgreSQL credentials
-![Git](/images/postgres_edit_button.png)
+![Git](./images/postgres_edit_button.png)
 
 3. Now you need to add the following credentials to this node
 ```
@@ -239,7 +240,7 @@ credentials = {
   5. Password
   6. Add mark Use SSL
 ```
-![Git](/images/postgres_add.png)
+![Git](./images/postgres_add.png)
 
 4. Click on update or add and then Done
 
@@ -395,8 +396,9 @@ SELECT * FROM (SELECT event, deviceid, tririgaorgid, tririgafloorid, timestamp, 
 * **Note:** If your sensor data requires different way of aggregation, then modify the **Form SQL Query" and **Compute occupany** node in the flow with required aggregation logic.
 
 ### 3. Analyze Results
+TODO
 
-### Related content
+## Related content
 
 [Integrate a TRIRIGA perceptive app with Building Insights APIs](https://developer.ibm.com/patterns/tririga-perceptive-app-w-building-insights/)
 
